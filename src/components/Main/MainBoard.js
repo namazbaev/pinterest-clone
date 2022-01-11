@@ -1,4 +1,4 @@
-import Pin from '../Pin'
+import Pin from '../Pin/Pin'
 import { Wrapper, Container } from './MainBoard.style'
 const MainBoard = ({ pins }) => {
   return (
