@@ -1,7 +1,6 @@
 import './App.css';
-import Header from './components/Header'
-import MainBoard from './components/MainBoard';
 import unsplash from './api/unsplash'
+import { Main, Header } from './components/index'
 import { useState, useEffect } from 'react';
 function App() {
   const [pins, setPins] = useState([])
@@ -13,7 +12,7 @@ function App() {
   const onSubmit = (e) => {
     getPhotos(e).then((res) => {
       let result = res.data.results;
-      let newPins = [...result, ...pins]
+      let newPins = [...pins, ...result]
       newPins.sort((a, b) => {
         return 0.5 - Math.random();
       });
@@ -21,9 +20,8 @@ function App() {
     })
   }
   const getNewPins = () => {
-    let data = []
-    let promises = []
-    let pins = ["ocean", "Tokyo", "Uzbekistan", "Football"]
+    let data = [], promises = []
+    let pins = ["ocean", "tokyo", "uzbekistan", "football"]
     pins.map(pin => {
       promises.push(getPhotos(pin).then((res) => {
         let result = res.data.results;
@@ -41,7 +39,7 @@ function App() {
   return (
     <>
       <Header onSubmit={onSubmit} />
-      <MainBoard pins={pins} />
+      <Main pins={pins} />
     </>
   );
 }
