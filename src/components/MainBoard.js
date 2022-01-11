@@ -1,11 +1,10 @@
-import React from 'react'
 import Pin from './Pin'
 import styled from 'styled-components'
 const MainBoard = ({ pins }) => {
   return (
     <Wrapper>
       <Container>
-        {pins.map(({ urls }) => <Pin urls={urls} />)}
+        {pins.map(({ urls }, i) => <Pin key={i} urls={urls} />)}
       </Container>
     </Wrapper>
   )
@@ -21,7 +20,10 @@ const Wrapper = styled.div`
   justify-content: center;
 `
 const Container = styled.div`
-  display: flex;
-  width: 80%;
+  column-count: 5;
+  column-gap: 10px;
+  margin: 0 auto;
+  height: 100%;
+  max-width: 1260px;
   background-color: #fff;
 `
